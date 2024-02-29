@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:resumebuilder/functions/db_functions.dart';
+import 'package:resumebuilder/model/data_model.dart';
 import 'package:resumebuilder/util/app_color.dart';
 import 'package:resumebuilder/util/app_constants.dart';
 
@@ -10,6 +14,12 @@ class ResumeForm extends StatefulWidget {
 }
 
 class _ResumeFormState extends State<ResumeForm> {
+  TextEditingController nameController=TextEditingController();
+  TextEditingController jobController=TextEditingController();
+  TextEditingController emailController=TextEditingController();
+  TextEditingController phoneController=TextEditingController();
+  TextEditingController linkedinController=TextEditingController();
+  TextEditingController summaryController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -30,6 +40,7 @@ class _ResumeFormState extends State<ResumeForm> {
               width: screenWidth(context)/1.5,
               height:45,
               child: TextFormField(
+                controller: nameController,
                 keyboardType: TextInputType.name,
                 textInputAction:TextInputAction.next ,
                 decoration:InputDecoration(
@@ -46,6 +57,7 @@ class _ResumeFormState extends State<ResumeForm> {
               width: screenWidth(context)/1.5,
               height:45,
               child: TextFormField(
+                controller: jobController,
                 keyboardType: TextInputType.name,
                 textInputAction:TextInputAction.next ,
                 decoration:InputDecoration(
@@ -63,6 +75,7 @@ class _ResumeFormState extends State<ResumeForm> {
               width: screenWidth(context)/1.5,
               height:45,
               child: TextFormField(
+                controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 textInputAction:TextInputAction.next ,
                 decoration:InputDecoration(
@@ -78,6 +91,7 @@ class _ResumeFormState extends State<ResumeForm> {
               width: screenWidth(context)/1.5,
               height:45,
               child: TextFormField(
+                controller: phoneController,
                 textInputAction:TextInputAction.next ,
                 keyboardType: TextInputType.number,
 
@@ -94,6 +108,7 @@ class _ResumeFormState extends State<ResumeForm> {
               width: screenWidth(context)/1.5,
               height:45,
               child: TextFormField(
+                controller: linkedinController,
                 textInputAction:TextInputAction.next ,
                 keyboardType: TextInputType.name,
                 decoration:InputDecoration(
@@ -109,6 +124,7 @@ class _ResumeFormState extends State<ResumeForm> {
               width: screenWidth(context)/1.5,
               height:100,
               child: TextFormField(
+                controller: summaryController,
                 textInputAction:TextInputAction.done ,
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
@@ -121,7 +137,7 @@ class _ResumeFormState extends State<ResumeForm> {
             dividerH10(),
             InkWell(
               onTap: (){
-
+saveResume();
               },
               child: Container(
                 height: 50,
@@ -142,4 +158,22 @@ class _ResumeFormState extends State<ResumeForm> {
       ),
     );
   }
+
+  Future<void>saveResume()async{
+    final _name=nameController.text.trim();
+    final _job=jobController.text.trim();
+    final _email=emailController.text.trim();
+    final _phone=phoneController.text.trim();
+    final _linkedin=linkedinController.text.trim();
+    final _summary=summaryController.text.trim();
+    if(_name.isEmpty || _job.isEmpty ||_email.isEmpty ||_phone.isEmpty ||_linkedin.isEmpty ||_summary.isEmpty ){
+      return;
+    }
+   // log("$_name $_job $_email $_phone $_linkedin $_summary");
+    final _resume=ResumeModel(name: _name, jobRole: _job, email: _email, phoneNumber: _phone, linkedin: _linkedin, summary: _summary);
+
+    addResume(_resume);
+  }
+
+
 }
