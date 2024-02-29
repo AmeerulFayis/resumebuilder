@@ -37,3 +37,7 @@ Widget dividerW20() {
   return const SizedBox(width: 20);
 }
 
+// padding size
+EdgeInsets commonPaddingAll10 = const EdgeInsets.all(10);
+EdgeInsets commonPaddingAll20 = const EdgeInsets.all(20);
+EdgeInsets commonPaddingAll30 = const EdgeInsets.all(30);
