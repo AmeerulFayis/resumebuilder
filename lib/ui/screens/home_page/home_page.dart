@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resumebuilder/ui/screens/resume_form_page/resume_form_page.dart';
 import 'package:resumebuilder/util/app_constants.dart';
 
 import '../../../util/app_color.dart';
@@ -22,7 +23,9 @@ class HomePage extends StatelessWidget {
 
               //create resume button
               InkWell(
-                onTap: (){},
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ResumeForm()));
+                },
                 child: Container(
                  height: 50,
                   padding: commonPaddingAll10,
