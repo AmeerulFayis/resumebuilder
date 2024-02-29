@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:resumebuilder/model/data_model.dart';
 import 'package:resumebuilder/ui/screens/home_page/home_page.dart';
+import 'package:resumebuilder/ui/screens/splash_page/splash_page.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: HomePage(),
+      home: SplashPage(),
       builder: EasyLoading.init(),
     );
   }
