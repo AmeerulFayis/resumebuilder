@@ -17,30 +17,33 @@ class ResumeModelAdapter extends TypeAdapter<ResumeModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ResumeModel(
-      name: fields[0] as String,
-      jobRole: fields[1] as String,
-      email: fields[2] as String,
-      phoneNumber: fields[3] as String,
-      linkedin: fields[4] as String,
-      summary: fields[5] as String,
+      name: fields[1] as String,
+      jobRole: fields[2] as String,
+      email: fields[3] as String,
+      phoneNumber: fields[4] as String,
+      linkedin: fields[5] as String,
+      summary: fields[6] as String,
+      id: fields[0] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ResumeModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
-      ..write(obj.name)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.jobRole)
+      ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.email)
+      ..write(obj.jobRole)
       ..writeByte(3)
-      ..write(obj.phoneNumber)
+      ..write(obj.email)
       ..writeByte(4)
-      ..write(obj.linkedin)
+      ..write(obj.phoneNumber)
       ..writeByte(5)
+      ..write(obj.linkedin)
+      ..writeByte(6)
       ..write(obj.summary);
   }
 

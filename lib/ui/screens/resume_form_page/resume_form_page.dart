@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:resumebuilder/functions/db_functions.dart';
 import 'package:resumebuilder/model/data_model.dart';
 import 'package:resumebuilder/util/app_color.dart';
@@ -137,7 +138,19 @@ class _ResumeFormState extends State<ResumeForm> {
             dividerH10(),
             InkWell(
               onTap: (){
-saveResume();
+                if(nameController.text.isNotEmpty || jobController.text.isNotEmpty|| emailController.text.isNotEmpty || phoneController.text.isNotEmpty || linkedinController.text.isNotEmpty || summaryController.text.isNotEmpty){
+
+                  saveResume();
+                  EasyLoading.showToast("Resume Created Successfully");
+                  Navigator.pop(context);
+
+                }else{
+                  EasyLoading.showToast("No field should be empty");
+                }
+
+
+
+
               },
               child: Container(
                 height: 50,

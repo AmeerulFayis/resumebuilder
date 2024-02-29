@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resumebuilder/functions/db_functions.dart';
@@ -11,6 +13,7 @@ class Resumes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    getAllResumes();
     return  Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.kGreen,
@@ -43,6 +46,16 @@ return ListView.builder(
           Text(data.phoneNumber),
           Text(data.linkedin),
           Text(data.summary),
+          SizedBox(
+            height: 50,
+          ),
+          IconButton(onPressed: (){
+            if(data.id!=null){
+              deleteResume(data.id!);
+            }else{
+              log("id is null.unable to delete");
+            }
+          }, icon:Icon(Icons.delete,color: Colors.red,))
 
         ],
       ),
